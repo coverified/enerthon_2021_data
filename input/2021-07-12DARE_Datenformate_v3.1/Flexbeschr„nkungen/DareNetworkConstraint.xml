@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DareNetworkConstraintDocument  DtdVersion="4" DtdRelease="1" DareSchemaVersion="1.0" >
+	<DocumentIdentification v="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
+	<DocumentVersion v="1"/>
+	<DocumentType v="D15"/> 
+	<ProcessType v="A14"/>
+	<SenderIdentification v="aaaaaaaaaaaaa" codingScheme="A10"/>
+	<SenderRole v="A18"/>
+	<ReceiverIdentification v="aaaaaaaaaaaaa" codingScheme="A10"/>
+	<ReceiverRole v="A39"/>
+	<DocumentDateTime v="2001-12-17T09:30:47Z"/>
+	<TimePeriodCovered v="2000-01-01T00:00Z/0000-01-01T00:00Z"/>
+	<NetworkConstraintTimeSeries>
+		<TimeSeriesIdentification v="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
+		<BusinessType v="A77"/>
+		<Direction v="A01"/>
+		<Product v="8716867000016"/>
+		<ConnectingArea v="10YCB-GERMANY--8" codingScheme="A01"/>
+		<ResourceObject v="550e8400-e29b-11d4-a716-446655440000" codingScheme="A01"/>
+		<ResourceProvider v="aaaaaaaaaaaaa" codingScheme="A10"/>
+		<MeasurementUnit v="MAW"/>
+		<Period>
+			<TimeInterval v="2000-01-01T00:00Z/0000-01-01T00:00Z"/>
+			<Resolution v="PT15M"/>
+			<Interval>
+				<Pos v="1"/>
+				<Qty v="0.0"/>
+			</Interval>
+		</Period>
+	</NetworkConstraintTimeSeries>
+</DareNetworkConstraintDocument>

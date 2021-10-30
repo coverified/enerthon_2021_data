@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:kwep_stammdaten:1:0" targetNamespace="urn:kwep_stammdaten:1:0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="DareARStammdaten" type="DareARStammdatenT"/>
+	<xs:simpleType name="Abrufart">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Z01">
+				<xs:annotation>
+					<xs:documentation source="Name" xml:lang="DE">DELTA</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Z02">
+				<xs:annotation>
+					<xs:documentation source="Name" xml:lang="DE">SOLLWERT</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="MarktpartnerT">
+		<xs:attribute name="Codierung" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:length value="3"/>
+					<xs:pattern value="\c+"/>
+					<xs:enumeration value="A10">
+						<xs:annotation>
+							<xs:documentation source="Name" xml:lang="DE">GS1</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="NDE">
+						<xs:annotation>
+							<xs:documentation source="Name" xml:lang="DE">Germany National coding scheme</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Code" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="13"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="MarktpartnerT_BetroffeneNB">
+		<xs:attribute name="Codierung" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:length value="3"/>
+					<xs:pattern value="\c+"/>
+					<xs:enumeration value="A10">
+						<xs:annotation>
+							<xs:documentation source="Name" xml:lang="DE">GS1</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="NDE">
+						<xs:annotation>
+							<xs:documentation source="Name" xml:lang="DE">Germany National coding scheme</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Code" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="13"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Pos" type="xs:nonNegativeInteger" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MarktrolleEmpfaengerT">
+		<xs:attribute name="Codierung" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:length value="3"/>
+					<xs:pattern value="\c+"/>
+					<xs:enumeration value="A10">
+						<xs:annotation>
+							<xs:documentation source="Name" xml:lang="DE">GS1</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="NDE">
+						<xs:annotation>
+							<xs:documentation source="Name" xml:lang="DE">Germany National coding scheme (BDEW-Code)</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Code" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="13"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="MarktrolleSenderT">
+		<xs:attribute name="Codierung" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:length value="3"/>
+					<xs:pattern value="\c+"/>
+					<xs:enumeration value="A10">
+						<xs:annotation>
+							<xs:documentation source="Name" xml:lang="DE">GS1</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="NDE">
+						<xs:annotation>
+							<xs:documentation source="Name" xml:lang="DE">Germany National coding scheme</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Code" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="13"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="Meldungsstatus">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A14">
+				<xs:annotation>
+					<xs:documentation source="Name" xml:lang="DE">Creation (The action requested to be carried out is the creation of a new object.)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="A15">
+				<xs:annotation>
+					<xs:documentation source="Name" xml:lang="DE">Update (The action requested to be carried out is the update of an existing object.)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ObjektTyp_AR_T">
+		<xs:sequence>
+			<xs:element name="KnotenNetzmodell" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="DE">UUID des Netzknotens im DA/RE-Netzmodell, dem die AR zugeordnet ist.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="36"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Klarname" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="Remark" xml:lang="DE">Klarname der AR Ressource
+          </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35"/>
+						<xs:pattern value="([A-Z0-9\-\+\\_]*)"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Aggregierender_Netzbetreiber" type="MarktpartnerT" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="DE">Dieses Element dient zur eindeutigen Identifikation des aggregierenden Netzbetreibers über seine Marktpartner-ID.</xs:documentation>
+					<xs:documentation source="Remark" xml:lang="DE">MP-ID des aggregierenden NB.
+					
+Anwendbare Codierung:
+'A10' GS1 
+'NDE' Germany National coding scheme (BDEW-Code)						
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Betroffene_Netzbetreiber" type="MarktpartnerT_BetroffeneNB" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="DE">Dieses Element dient zur eindeutigen Identifikation des Betroffenen Netzbetreibers über seine Marktpartner-ID.</xs:documentation>
+					<xs:documentation source="Remark" xml:lang="DE">MP-ID des 'ANB' der Aggregations Ressource. 
+
+Anwendbare Codierung:
+'A10' GS1 
+'NDE' Germany National coding scheme (BDEW-Code)	
+
+Anwendbare Pos:
+'1' 
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Energietraeger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="DE">Der komplexe Typ Energietraeger wird nur für Stromerzeugungseinheiten (SEE) verwendet. Es wird der Hauptenergieträger angegeben, auf den der größte Anteil der im letzten Jahr erzeugten Strommenge entfällt.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="B01">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Biomasse</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B02">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Braunkohle</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B03">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Fossiles Gas aus Kohle gewonnen</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B04">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Erdgas</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B05">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Steinkohle</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B06">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Mineralölprodukte</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B09">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Geothermie</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B10">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Pumpspeicher</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B11">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Laufwasser</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B12">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Speicherwasser (ohne Pumpspeicher)</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B14">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Kernenergie</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B15">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Deponiegas, Grubengas, Klärgas</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B16">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Solare Strahlungsenergie</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B17">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Abfall</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B18">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Windenergie (Offshore-Anlage)</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B19">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Windenergie (Onshore-Anlage)</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="B20">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Mehrere Energieträger (nicht erneuerbar), Sonstige Energieträger (nicht erneuerbar), Unbekannter Energieträger (nicht erneuerbar)</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Z01">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Batteriespeicher</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Abrufart" type="Abrufart" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="Desc">Abrufart der zugeordneten Ressourcen.</xs:documentation>
+					<xs:documentation source="Remark" xml:lang="DE">Anwendbare Codes: 	
+'Z01' DELTA 
+'Z02' SOLLWERT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Codierung" use="required">
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation source="Remark" xml:lang="DE">
+Anwendbare Codierung:
+'A10' GS1 
+'NDE' Germany National coding scheme (BDEW-Code)			
+							</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="NDE">
+						<xs:annotation>
+							<xs:documentation source="Name" xml:lang="DE">Germany National coding scheme</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Code" use="required">
+			<xs:annotation>
+				<xs:documentation source="Remark" xml:lang="DE">Eindeutiger Identifier je Objekttyp. </xs:documentation>
+				<xs:documentation source="Example">AR875676833</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="11"/>
+					<xs:pattern value="A[A-Z\d]{9}\d"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="DareARStammdatenT">
+		<xs:sequence>
+			<xs:element name="DocumentIdentification">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="DE">Die Identifikation des Dokuments (DocumentIdentification) hat je Absender und je Dokumententyp eindeutig zu sein.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="35"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DocumentType">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="DE">Mit DokumentTyp wird angegeben, um welche Art Dokument es sich handelt.</xs:documentation>
+					<xs:documentation source="Remark" xml:lang="DE">Anwendbare Codes:
+'D02' AR-Stammdatendokument</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="collapse"/>
+						<xs:enumeration value="D02">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">DA/RE AR-Stammdaten-Meldung</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Erstellungszeitpunkt">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="DE">
+Hier ist der Erzeugungszeitpunkt des Dokuments anzugeben. Die Zeitangabe erfolgt in UTC. Der Zeitpunkt ist immer im Format 
+yyyy-mm-ddThh:mm:ssZ anzugeben mit:
+
+yyyy vier Ziffern für die Jahresangabe
+mm zwei Ziffern für die Monatsangabe
+dd zwei Ziffern für die Tagesangabe
+hh zwei Ziffern für die Stundenangabe
+mm zwei Ziffern für die Minutenangabe
+ss zwei Ziffern für die Sekundenangabe
+T Trennzeichen zwischen Datum und Uhrzeit
+Z Verweis auf UTC
+          </xs:documentation>
+					<xs:documentation source="Example">2018-08-09T17:34:02Z</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:dateTime">
+						<xs:pattern value="20(\d{2}(\-(0[13578]|1[02])\-(0[1-9]|[12]\d|3[01])|\-02\-(0[1-9]|1\d|2[0-8])|\-(0[469]|11)\-(0[1-9]|[12]\d|30))|([02468][048]|[13579][26])\-02\-(29))T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Sender" type="MarktrolleSenderT">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="DE">Dieses Element dient zur eindeutigen Identifikation des Senders über seine Marktpartner-ID.</xs:documentation>
+					<xs:documentation source="Remark" xml:lang="DE">Anwendbare Codierung:
+'A10' GS1 
+'NDE' Germany National coding scheme (BDEW-Code)			
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Senderrolle">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="DE">Dieses Element dient zur Identifikation der Marktrolle des Senders.</xs:documentation>
+					<xs:documentation source="Remark" xml:lang="DE">Anwendbare Codes:
+'A39'	Data provider (DP)		
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:maxLength value="3"/>
+						<xs:enumeration value="A39">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Data provider</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Empfaenger" type="MarktrolleEmpfaengerT">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="DE">Dieses Element dient zur eindeutigen Identifikation des Empfaengers über seine Marktpartner-ID.</xs:documentation>
+					<xs:documentation source="Remark" xml:lang="DE">Anwendbare Codierung:
+	'A10' GS1 
+	'NDE' Germany National coding scheme (BDEW-Code)			
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Empfaengerrolle">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="DE">Dieses Element dient zur Identifikation der Marktrolle des Empfängers.</xs:documentation>
+					<xs:documentation source="Remark" xml:lang="DE">Anwendbare Codes:
+'A18'	Grid operator (NB)	
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="A18">
+							<xs:annotation>
+								<xs:documentation source="Name" xml:lang="DE">Grid operator</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Gueltig_ab">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="DE">
+Das Format yyyy-mm-ddThh:mm:ssZ ist anzugeben mit:
+
+yyyy vier Ziffern für die Jahresangabe
+mm zwei Ziffern für die Monatsangabe
+dd zwei Ziffern für die Tagesangabe
+hh zwei Ziffern für die Stundenangabe
+mm zwei Ziffern für die Minutenangabe
+ss zwei Ziffern für die Sekundenangabe
+T Trennzeichen zwischen Datum und Uhrzeit
+Z Verweis auf UTC
+          </xs:documentation>
+					<xs:documentation source="Example">2018-08-09T17:34:02Z</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:dateTime">
+						<xs:pattern value="20(\d{2}(\-(0[13578]|1[02])\-(0[1-9]|[12]\d|3[01])|\-02\-(0[1-9]|1\d|2[0-8])|\-(0[469]|11)\-(0[1-9]|[12]\d|30))|([02468][048]|[13579][26])\-02\-(29))T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Meldungsstatus" type="Meldungsstatus" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="DE">Meldungsstatus </xs:documentation>
+					<xs:documentation source="Remark" xml:lang="DE">Anwendbare Codes:
+'A14' Initiale AR-Stammdatenmeldung
+'A15' Änderung der AR-Stammdaten
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AR_Objekt" type="ObjektTyp_AR_T" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="DtdBDEWNachrichtenVersion" type="xs:string" use="required" fixed="1.0"/>
+		<xs:attribute name="DareSchemaVersion" type="DareSchemaVersionType" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="Zeit">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:complexType name="ZeitT">
+		<xs:simpleContent>
+			<xs:extension base="Zeit">
+				<xs:attribute name="Einheit" use="required" form="unqualified">
+					<xs:simpleType>
+						<xs:restriction base="xs:NMTOKEN">
+							<xs:enumeration value="Z01">
+								<xs:annotation>
+									<xs:documentation source="Name" xml:lang="DE">Minuten</xs:documentation>
+								</xs:annotation>
+							</xs:enumeration>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- DA/RE extensions -->
+	<xs:simpleType name="DareSchemaVersionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1.0"/>
+			<!--	<xsd:enumeration value="1.1"/>-->
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

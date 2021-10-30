@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DareARStammdaten DtdBDEWNachrichtenVersion="1.0" DareSchemaVersion="1.0" xsi:schemaLocation="urn:kwep_stammdaten:1:0 DareARStammdaten.xsd" xmlns="urn:kwep_stammdaten:1:0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<DocumentIdentification>ARStammdatenTest1</DocumentIdentification>
+	<DocumentType>D02</DocumentType>
+	<Erstellungszeitpunkt>2021-04-22T00:00:00Z</Erstellungszeitpunkt>
+	<Sender Codierung="A10" Code="0000000000000"/>
+	<Senderrolle>A39</Senderrolle>
+	<Empfaenger Codierung="A10" Code="0000000000001"/>
+	<Empfaengerrolle>A18</Empfaengerrolle>
+	<Gueltig_ab>2022-01-01T00:00:00Z</Gueltig_ab>
+	<Meldungsstatus>A14</Meldungsstatus>
+	<AR_Objekt Codierung="NDE" Code="AR000000001">
+		<KnotenNetzmodell>550e8400-e29b-11d4-a716-446655440000</KnotenNetzmodell>
+		<Klarname>NAMEVONAR000000001</Klarname>
+		<Aggregierender_Netzbetreiber Codierung="A10" Code="0000000000002"/>
+		<Betroffene_Netzbetreiber Codierung="A10" Code="0000000000001" Pos="1"/>
+		<Energietraeger>B01</Energietraeger>
+		<Abrufart>Z01</Abrufart>
+	</AR_Objekt>
+</DareARStammdaten>

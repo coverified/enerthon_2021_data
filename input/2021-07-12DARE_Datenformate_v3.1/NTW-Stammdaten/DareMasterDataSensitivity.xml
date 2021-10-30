@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DareMasterDataSensitivityDocument DtdVersion="4" DtdRelease="1"  DareSchemaVersion="1.0"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<DocumentIdentification v="NTW-Stammdaten-Test"/>
+	<DocumentVersion v="1"/>
+	<DareDocumentType v="D11"/>
+	<modelingAuthoritySet v="http://NETZ.de/20-kV-N-OEH"/>
+	<DareDependentOnEQ v="550e8400-e29b-11d4-a716-446655440000"/>
+	<DareDependentOnTP v="550e8400-e29b-11d4-a716-446655440000"/>
+	<DareDependentOnEQ_BD v="550e8400-e29b-11d4-a716-446655440000"/>
+	<DareDependentOnTP_BD v="550e8400-e29b-11d4-a716-446655440000"/>
+	<SenderIdentification v="9904959000007" codingScheme="A10"/>
+	<SenderRole v="A18"/>
+	<ReceiverIdentification v="0000000000000" codingScheme="A10"/>
+	<ReceiverRole v="A39"/>
+	<created v="2001-12-17T09:30:47Z"/>
+	<scenarioTime v="2018-08-09T17:34:02Z"/>
+	<GridElementSensitivity>
+		<BusinessType v="B59"/>
+		<Direction v="A01"/>
+		<ConnectingArea v="10YDE-ENBW-----N" codingScheme="A01"/>
+		<!--Regelzone-->
+		<ResourceObject v="550e8400-e29b-11d4-a716-446655440000" codingScheme="A01"/>
+		<!--ID der Knoten-->
+		<ResourceObjectDisplay v="NETZ_UW-GOHFE_SS101A" codingScheme="A01"/>
+		<!--Klarname Knoten-->
+		<GridElement v="550e8400-e29b-11d4-a716-446655440000" codingScheme="A01"/>
+		<!--ID des Netzbetriebsmittels-->
+		<GridElementDisplay v="HALSW-UNTRT WS" codingScheme="A01"/>
+		<!--Klarname des Netzbetriebsmittels-->
+		<MeasurementUnit v="C62"/>
+		<Sensitivity v="0.4"/>
+	</GridElementSensitivity>
+</DareMasterDataSensitivityDocument>

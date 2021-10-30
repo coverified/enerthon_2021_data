@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DareRedispatchDemandDocument  DareSchemaVersion="1.0" >
+	<DocumentIdentification v="RD-Bedarf-Test"/>
+	<DocumentVersion v="1"/>
+	<DocumentType v="D42"/>
+	<ProcessType v="A41"/>
+	<SenderIdentification v="9904959000007" codingScheme="A10"/>
+	<SenderRole v="A39"/>
+	<ReceiverIdentification v="0000000000000" codingScheme="A10"/>
+	<ReceiverRole v="A18"/>
+	<CreationDateTime v="2001-12-17T09:30:47Z"/>
+	<RedispatchDemandTimeInterval v="2000-01-01T00:00Z/0000-01-01T00:00Z"/>
+	<OrderIdentification v="Test-Order"/>
+	<OrderIdentificationVersion v="1"/>
+	<RedispatchDemandTimeSeries>
+		<RedispatchDemandIdentification v="Test-RD-Demand"/>
+		<ResourceProvider v="9904959000007" codingScheme="A10"/>
+		<BusinessType v="A46"/>
+		<ConnectingArea v="10YCB-GERMANY--8" codingScheme="A01"/>
+		<MeasureUnit v="A59"/>
+		<Direction v="A01"/>
+		<Status v="A06"/>
+		<ResourceObject v="550e8400-e29b-11d4-a716-446655440000" codingScheme="A01"/>
+		<Period>
+			<TimeInterval v="2000-01-01T00:00Z/0000-01-01T00:00Z"/>
+			<Resolution v="P1Y2M3DT10H30M"/>
+			<Interval>
+				<Pos v="1"/>
+				<Qty v="0.0"/>
+				<Reason>
+					<ReasonCode v="Z26"/>
+					<ReasonText v="Test-Reason-fuer-Interval"/>
+				</Reason>
+			</Interval>
+		</Period>
+		<Reason>
+			<ReasonCode v="A57"/>
+			<ReasonText v="Test-Reason-fuer-RedispatchDemandTimeSeries"/>
+		</Reason>
+	</RedispatchDemandTimeSeries>
+</DareRedispatchDemandDocument>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DarePlannedSensitivityScheduleDocument DtdVersion="4" DtdRelease="1"  DareSchemaVersion="1.0">
+	<DocumentIdentification v="NTW-Planungsdaten-Test"/>
+	<DocumentVersion v="1"/>
+	<DocumentType v="D17"/>
+	<ProcessType v="A14"/>
+	<modelingAuthoritySet v="http://NETZ.de/20-kV-N-OEH"/>
+	<DependentOn v="NTW-Stammdaten-Test"/>
+	<!--ID der SD-NTW-Datei-->
+	<SenderIdentification v="9904959000007" codingScheme="A01"/>
+	<SenderRole v="A18"/>
+	<ReceiverIdentification v="aaaaaaaaaaaaa" codingScheme="A02"/>
+	<ReceiverRole v="A39"/>
+	<DocumentDateTime v="2001-12-17T09:30:47Z"/>
+	<TimePeriodCovered v="2000-01-01T00:00Z/0000-01-01T00:00Z"/>
+	<PlannedSensitivityTimeSeries>
+		<TimeSeriesIdentification v="Test-TimeSeries"/>
+		<BusinessType v="B59"/>
+		<Direction v="A01"/>
+		<ConnectingArea v="10YDE-ENBW-----N" codingScheme="A01"/>
+		<ResourceObject v="550e8400-e29b-11d4-a716-446655440000" codingScheme="A01"/>
+		<!--ID der Knoten-->
+		<ResourceObjectDisplay v="NETZ_UW-GOHFE_SS101A" codingScheme="A01"/>
+		<!--Klarname Knoten-->
+		<GridElement v="550e8400-e29b-11d4-a716-446655440000" codingScheme="A01"/>
+		<!--ID des Netzbetriebsmittels-->
+		<GridElementDisplay v="HALSW-UNTRT WS" codingScheme="A01"/>
+		<!--Klarname des Netzbetriebsmittels-->
+		<MeasurementUnit v="C62"/>
+		<Period>
+			<TimeInterval v="2019-12-04T23:00Z/2019-12-05T23:00Z"/>
+			<Resolution v="PT15M"/>
+			<Interval>
+				<Pos v="1"/>
+				<Qty v="0.000"/>
+			</Interval>
+			<Interval>
+				<Pos v="96"/>
+				<Qty v="0.400"/>
+			</Interval>
+		</Period>
+	</PlannedSensitivityTimeSeries>
+</DarePlannedSensitivityScheduleDocument>

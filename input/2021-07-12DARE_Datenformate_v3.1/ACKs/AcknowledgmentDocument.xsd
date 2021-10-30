@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecc="urn:entsoe.eu:wgedi:components" xmlns:ecl="urn:entsoe.eu:wgedi:codelists" 
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xsd:import namespace="urn:entsoe.eu:wgedi:components" schemaLocation="urn-entsoe-eu-wgedi-components.xsd"/>
+	<!-- DA/RE extension -->
+	<xsd:import namespace="urn:entsoe.eu:wgedi:codelists" schemaLocation="urn-entsoe-eu-wgedi-codelists.xsd"/>
+	<xsd:element name="AcknowledgementDocument">
+		<xsd:annotation>
+			<xsd:documentation source="Dokumentation">Ausgabe</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation/>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element name="DocumentIdentification" type="ecc:IdentificationType">
+					<xsd:annotation>
+						<xsd:documentation/>
+						<xsd:documentation source="Desc" xml:lang="DE">Die DocumentIdentification hat je Absender und je Dokumententyp eindeutig zu sein. Bei der Bildung der Identifikation ist auf Groß- und Kleinschreibung zu achten (case-sensitive).</xsd:documentation>
+						<xsd:documentation source="Layout">Layout</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="DocumentDateTime" type="ecc:DocumentDateTimeType">
+					<xsd:annotation>
+						<xsd:documentation/>
+						<xsd:documentation source="Desc" xml:lang="DE">
+Hier ist der Erzeugungszeitpunkt des Dokuments anzugeben. Die Zeitangabe erfolgt in UTC. 
+Der Zeitpunkt ist immer im Format 
+yyyy-mm-ddThh:mm:ssZ anzugeben, mit: 
+
+yyyy vier Ziffern für die Jahresangabe
+mm zwei Ziffern für die Monatsangabe
+dd zwei Ziffern für die Tagesangabe
+hh zwei Ziffern für die Stundenangabe
+mm zwei Ziffern für die Minutenangabe
+ss zwei Ziffern für die Sekundenangabe
+T, Z Zeichen, die an den entsprechenden Stellen zwingend anzugeben sind.
+            </xsd:documentation>
+						<xsd:documentation source="Layout">Layout</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="SenderIdentification" type="ecc:PartyType">
+					<xsd:annotation>
+						<xsd:documentation/>
+						<xsd:documentation source="Desc" xml:lang="DE">Dieses Element dient zur eindeutigen Identifikation des Senders über seine Marktpartner-ID, die zu einer vordefinierten Codeliste einer vergebenden Organisation gehören muss.</xsd:documentation>
+						<xsd:documentation source="Layout">Layout</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="SenderRole" type="ecc:RoleType">
+					<xsd:annotation>
+						<xsd:documentation/>
+						<xsd:documentation source="Desc" xml:lang="DE">Dieses Element dient zur Angabe der Marktrolle des Absenders.</xsd:documentation>
+						<xsd:documentation source="Layout">Layout</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ReceiverIdentification" type="ecc:PartyType">
+					<xsd:annotation>
+						<xsd:documentation/>
+						<xsd:documentation source="Desc" xml:lang="DE">Dieses Element dient zur eindeutigen Identifikation des Empfängers über seine Marktpartner-ID, die zu einer vordefinierten Codeliste einer vergebenden Organisation gehören muss.</xsd:documentation>
+						<xsd:documentation source="Layout">Layout</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ReceiverRole" type="ecc:RoleType" minOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation/>
+						<xsd:documentation source="Desc" xml:lang="DE">Dieses Element dient zur Angabe der Marktrolle des Empfängers.</xsd:documentation>
+						<xsd:documentation source="Layout">Layout</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ReceivingDocumentIdentification" type="ecc:IdentificationType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation/>
+						<xsd:documentation source="Desc" xml:lang="DE">
+In diesem Element wird die Identifikation des Dokuments(DocumentIdentification) angegeben, auf das sich das AcknowledgementDocument bezieht. Die Eindeutigkeit des Dokuments, auf das Bezug genommen wird, ergibt sich für den
+Empfänger des AcknowledgementDocuments (ACK) erst durch die Angaben (ReceivingDocumentIdentification; ReceivingDocumentVersion; ReceivingDocumentType; Receiver (des AcknowledgementDocument), Absender (des
+AcknowledgementDocument)). Dieses Feld wird nur verwendet, wenn die originäre Nachricht, auf Grund derer das AcknowledgementDocument gesendet wird, eine gültige und lesbare XML-Nachricht ist. Im Falle eines sog. technischen AcknowledgementDocuments (Datei nicht lesbar, da keine gültige XML-Datei) wird dieses Element nicht verwendet.
+            </xsd:documentation>
+						<xsd:documentation source="Layout">Layout</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ReceivingDocumentVersion" type="ecc:VersionType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation/>
+						<xsd:documentation source="Desc" xml:lang="DE">In diesem Element wird die Documentversion (DocumentVersion) des Dokuments angegeben, auf das sich das AcknowledgementDocument bezieht. Dieses Feld wird nur verwendet, wenn die originäre Nachricht, auf Grund derer das AcknowledgementDocument gesendet wird, eine gültige und lesbare XML-Nachricht ist. Im Falle eines sog. technischen AcknowledgementDocuments (originäre Nachricht, auf die Bezug genommen wird, war nicht lesbar, da keine gültige XML-Datei) wird dieses Element nicht verwendet.</xsd:documentation>
+						<xsd:documentation source="Layout">Layout</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ReceivingDocumentType" type="DareMessageType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation/>
+						<xsd:documentation source="Desc" xml:lang="DE">In diesem Element wird der Dokumenttyp (DocumentType) des Dokuments angegeben, auf das sich das AcknowledgementDocument bezieht. Dieses Feld wird nur verwendet, wenn die originäre Nachricht, auf Grund derer das AcknowledgementDocument gesendet wird, eine gültige und lesbare XML-Nachricht ist. Im Falle eines sog. technischen AcknowledgementDocuments (originäre Nachricht nicht lesbar, da keine gültige XML-Datei) wird dieses Element nicht verwendet.</xsd:documentation>
+						<xsd:documentation source="Layout">Layout</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ReceivingPayloadName" type="ecc:LongIdentificationType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation/>
+						<xsd:documentation source="Desc" xml:lang="DE">In diesem Element wird der Dateiname des Dokuments angegeben, auf das sich die Empfangs- und Prüfbestätigung bezieht. Dieses Feld wird nur in einer sog. technischen Empfangs- und Prüfbestätigung verwendet, d. h., wenn die originäre Nachricht, auf Grund derer die Empfangs- und Prüfbestätigung gesendet wird, keine gültige und lesbare XML-Nachricht ist. Im Falle einer technischen Empfangs- und Prüfbestätigung werden die Felder ReceivingDocumentIdentification, ReceivingDocumentVersion und ReceivingDocumentType nicht verwendet. Der Empfänger muss an Hand des Absenders und des Dateinamens die Zuordnung zur Nachricht durchführen.</xsd:documentation>
+						<xsd:documentation source="Layout">Layout</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="DateTimeReceivingDocument" type="ecc:DocumentDateTimeType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation/>
+						<xsd:documentation source="Layout">Layout</xsd:documentation>
+						<xsd:documentation xml:lang="DE" source="Desc">
+Hier ist der Erzeugungszeitpunkteinzutragen aus dem Dokumentes einzutragen, auf dass mit diesem ACK geantwortet wird. Die Angabe des Zeitpunktes erfolgt in UTC im Format yyyy-mm-ddThh:mm:ssZ, wobei
+yyyy vier Ziffern für die Jahresangabe
+mm zwei Ziffern für die Monatsangabe
+dd zwei Ziffern für die Tagesangabe
+hh zwei Ziffern für die Stundenangabe
+mm zwei Ziffern für die Minutenangabe
+ss zwei Ziffern für die Sekundenangabe sind.
+T Trennzeichen zwischen Datum und Uhrzeit
+Z Zeichen weist auf Angabe in UTC hin.
+
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="TimeSeriesRejection" type="TimeSeriesRejection_Type" minOccurs="0" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Die Angabe der TimeSeriesRejection ist dann nötig, wenn ein Fehler innerhalb einer Zeitreihe festgestellt wird.</xsd:documentation>
+						<xsd:documentation source="Dokumentation">Ausgabe</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Reason" type="Reason_Type" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Über ReasonCode und den ggf. auch enthaltenen ReasonText wird der Fehler beschrieben, der in der Datei festgestellt wurde. Zusätzlich wird hier die Information übermittelt, ob die Datei akzeptiert (ReasonCode A01) oder abgelehnt wurde (ReasonCode A02).</xsd:documentation>
+						<xsd:documentation source="Dokumentation">Ausgabe</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="TimeIntervalError" type="TimeIntervalError_Type" minOccurs="0" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation source="Abhängigkeit">nur bei ReasonCode A21</xsd:documentation>
+						<xsd:documentation source="Desc" xml:lang="DE">Die Angabe des TimeIntervalError ist dann nötig, wenn ein Fehler innerhalb eines Zeitintervalls festgestellt wird. Das hier angegebene Zeitintervall kann kleiner sein als das im zugrundeliegenden Dokument (ACR oder ARN), es muss aber innerhalb der dort angegebenen Intervallgrenzen liegen. Es ist genau das Zeitintervall anzugeben, in dem der gemeldete Fehler enthalten ist.</xsd:documentation>
+						<xsd:documentation xml:lang="DE" source="Desc">Das Element wird derzeit für Redispatch 2.0 nicht genutzt.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="DtdVersion" type="xsd:string" use="required" fixed="5"/>
+			<xsd:attribute name="DtdRelease" type="xsd:string" use="required" fixed="1"/>
+			<xsd:attribute name="DtdBDEWNachrichtenVersion" type="xsd:string" fixed="1.0"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="Reason_Type">
+		<xsd:annotation>
+			<xsd:documentation/>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ReasonCode" type="DareReasonType">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ReasonText" type="ecc:ReasonTextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TimeIntervalError_Type">
+		<xsd:annotation>
+			<xsd:documentation/>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="QuantityTimeInterval" type="ecc:TimeIntervalType">
+				<xsd:annotation>
+					<xsd:documentation/>
+					<xsd:documentation source="Remark" xml:lang="DE">Angabe des Zeitintervalls, in dem ein Fehler aufgetreten ist, gemäß Pattern.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Reason" type="Reason_Type" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TimeSeriesRejection_Type">
+		<xsd:annotation>
+			<xsd:documentation/>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="SendersTimeSeriesIdentification" type="ecc:IdentificationType">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TimeIntervalError" type="TimeIntervalError_Type" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Reason" type="Reason_Type" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType> 
+	<!-- DA/RE extensions -->
+	<xsd:simpleType name="DareExtensionMessageType">
+		<xsd:restriction base="xsd:NMTOKEN">
+			<xsd:enumeration value="D02"/>
+			<xsd:enumeration value="D11"/>
+			<xsd:enumeration value="D14"/>
+			<xsd:enumeration value="D15"/>
+			<xsd:enumeration value="D17"/>
+			<xsd:enumeration value="D41"/>
+			<xsd:enumeration value="D42"/>
+			<xsd:enumeration value="D71"/>
+			<xsd:enumeration value="D72"/>
+			<xsd:enumeration value="D73"/>
+			<xsd:enumeration value="D74"/>
+			<xsd:enumeration value="D96"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DareMessageTypeList">
+		<xsd:union memberTypes="ecl:StandardMessageTypeList ecl:LocalMessageType DareExtensionMessageType"/>
+	</xsd:simpleType>
+	<xsd:complexType name="DareMessageType">
+		<xsd:attribute name="v" type="DareMessageTypeList" use="required"/>
+	</xsd:complexType>
+	<xsd:simpleType name="DareExtensionReasonType">
+		<xsd:restriction base="xsd:NMTOKEN">
+			<xsd:enumeration value="D01"/>
+			<xsd:enumeration value="D02"/>
+			<xsd:enumeration value="D03"/>
+			<xsd:enumeration value="D04"/>
+			<xsd:enumeration value="D05"/>
+			<xsd:enumeration value="D06"/>
+			<xsd:enumeration value="D07"/>
+			<xsd:enumeration value="D08"/>
+			<xsd:enumeration value="D09"/>
+			<xsd:enumeration value="D10"/>
+			<xsd:enumeration value="D11"/>
+			<xsd:enumeration value="D12"/>
+			<xsd:enumeration value="D13"/>
+			<xsd:enumeration value="D14"/>
+			<xsd:enumeration value="D15"/>
+			<xsd:enumeration value="D16"/>
+			<xsd:enumeration value="D17"/>
+			<xsd:enumeration value="D18"/>
+			<xsd:enumeration value="D19"/>
+			<xsd:enumeration value="D20"/>
+			<xsd:enumeration value="D21"/>
+			<xsd:enumeration value="D22"/>
+			<xsd:enumeration value="D23"/>
+			<xsd:enumeration value="D24"/>
+			<xsd:enumeration value="D25"/>
+			<xsd:enumeration value="D26"/>
+			<xsd:enumeration value="D27"/>
+			<xsd:enumeration value="D28"/>
+			<xsd:enumeration value="D29"/>
+			<xsd:enumeration value="D30"/>
+			<xsd:enumeration value="D31"/>
+			<xsd:enumeration value="D32"/>
+			<xsd:enumeration value="D33"/>
+			<xsd:enumeration value="D34"/>
+			<xsd:enumeration value="D35"/>
+			<xsd:enumeration value="D36"/>
+			<xsd:enumeration value="D37"/>
+			<xsd:enumeration value="D38"/>
+			<xsd:enumeration value="D39"/>
+			<xsd:enumeration value="D40"/>
+			<xsd:enumeration value="D41"/>
+			<xsd:enumeration value="D42"/>
+			<xsd:enumeration value="D43"/>
+			<xsd:enumeration value="D44"/>
+			<xsd:enumeration value="D45"/>
+			<xsd:enumeration value="D46"/>
+			<xsd:enumeration value="D47"/>
+			<xsd:enumeration value="D48"/>
+			<xsd:enumeration value="D49"/>
+			<xsd:enumeration value="D50"/>
+			<xsd:enumeration value="D51"/>
+			<xsd:enumeration value="D52"/>
+			<xsd:enumeration value="D53"/>
+			<xsd:enumeration value="D54"/>
+			<xsd:enumeration value="D55"/>
+			<xsd:enumeration value="D56"/>
+			<xsd:enumeration value="D57"/>
+			<xsd:enumeration value="D58"/>
+			<xsd:enumeration value="D59"/>
+			<xsd:enumeration value="D60"/>
+			<xsd:enumeration value="D61"/>
+			<xsd:enumeration value="D62"/>
+			<xsd:enumeration value="D63"/>
+			<xsd:enumeration value="D64"/>
+			<xsd:enumeration value="D65"/>
+			<xsd:enumeration value="D66"/>
+			<xsd:enumeration value="D67"/>
+			<xsd:enumeration value="D68"/>
+			<xsd:enumeration value="D69"/>
+			<xsd:enumeration value="D70"/>
+			<xsd:enumeration value="D71"/>
+			<xsd:enumeration value="D72"/>
+			<xsd:enumeration value="D73"/>
+			<xsd:enumeration value="D74"/>
+			<xsd:enumeration value="D75"/>
+			<xsd:enumeration value="D76"/>
+			<xsd:enumeration value="D77"/>
+			<xsd:enumeration value="D78"/>
+			<xsd:enumeration value="D79"/>
+			<xsd:enumeration value="D80"/>
+			<xsd:enumeration value="D81"/>
+			<xsd:enumeration value="D82"/>
+			<xsd:enumeration value="D83"/>
+			<xsd:enumeration value="D84"/>
+			<xsd:enumeration value="D85"/>
+			<xsd:enumeration value="D86"/>
+			<xsd:enumeration value="D87"/>
+			<xsd:enumeration value="D88"/>
+			<xsd:enumeration value="D89"/>
+			<xsd:enumeration value="D90"/>
+			<xsd:enumeration value="D91"/>
+			<xsd:enumeration value="D92"/>
+			<xsd:enumeration value="D93"/>
+			<xsd:enumeration value="D94"/>
+			<xsd:enumeration value="D95"/>
+			<xsd:enumeration value="D96"/>
+			<xsd:enumeration value="D97"/>
+			<xsd:enumeration value="D98"/>
+			<xsd:enumeration value="D99"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DareExtensionReasonTypeList">
+		<xsd:union memberTypes="ecl:StandardReasonCodeTypeList ecl:LocalReasonCodeType DareExtensionReasonType"/>
+	</xsd:simpleType>
+	<xsd:complexType name="DareReasonType">
+		<xsd:attribute name="v" type="DareExtensionReasonTypeList" use="required"/>
+	</xsd:complexType>	
+	
+</xsd:schema>

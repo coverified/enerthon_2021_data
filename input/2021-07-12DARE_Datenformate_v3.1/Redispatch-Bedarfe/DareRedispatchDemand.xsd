@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"  xmlns:ecc="urn:entsoe.eu:wgedi:components" xmlns:ecl="urn:entsoe.eu:wgedi:codelists"  elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="urn:entsoe.eu:wgedi:components" schemaLocation="urn-entsoe-eu-wgedi-components.xsd"/>
+	<xsd:import namespace="urn:entsoe.eu:wgedi:codelists" schemaLocation="urn-entsoe-eu-wgedi-codelists.xsd"/>
+	<xsd:element name="DareRedispatchDemandDocument">
+		<xsd:annotation>
+			<xsd:documentation source="Desc">
+Dokument zur Übermittlung von Redispatchbedarfen im Rahmen des optimierten RD-Abrufs durch die DARE-Palttform. Ein Eintrag repräsentiert den RD-Bedarf eines Netzbetriebsmittels zum entsprechenden Zeitpunkt.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="DocumentIdentification" type="ecc:IdentificationType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Die DocumentIdentification hat je Absender und je Dokumententyp eindeutig zu sein. Bei der Bildung der Identifikation ist auf Groß- und Kleinschreibung zu achten (case-sensitive).</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="DocumentVersion" type="ecc:VersionType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Die Versionsnummer des jeweiligen Dokumentes, beginnend mit 1.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="DocumentType" type="DareMessageType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">
+Kennzeichnet den Typ des Dokumentes, der im Redispatchprozess verwendet wird.
+D96	Meldung RD-Bedarfe an DA/RE
+D41	Meldung über gedeckte RD-Bedarfe an NB
+D42	Meldung über nicht/teilweise gedeckte RD-Bedarfe an NB	
+					</xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes:
+'D96' Meldung RD-Bedarfe an DA/RE
+'D41' Meldung über gedeckte RD-Bedarfe an NB
+'D42' Meldung über nicht/teilweise gedeckte RD-Bedarfe an NB	</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ProcessType" type="ecc:ProcessType" minOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Kennzeichnet die Zuordnung zum Geschäftsprozess. A41	Redispatch process</xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes:
+'A41'</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="SenderIdentification" type="ecc:PartyType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Dieses Element dient zur eindeutigen Identifikation des Senders über seine Marktpartner-ID, die zu einer vordefinierten Codeliste einer - den jeweiligen Identifikator vergebenden -  Organisation gehören muss.</xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Anwendbare codingSchemes:
+'A10'
+'NDE'</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="SenderRole" type="ecc:RoleType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Dieses Element dient zur Angabe der Marktrolle des Absenders.</xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes:
+'A18' Grid operator
+'A39' Data provider  
+</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ReceiverIdentification" type="ecc:PartyType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Dieses Element dient zur eindeutigen Identifikation des Empfängers über seine Marktpartner-ID, die zu einer vordefinierten Codeliste einer - den jeweiligen Identifikator vergebenden - Organisation gehören muss.</xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Anwendbare codingSchemes:
+'A10'
+'NDE'</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ReceiverRole" type="ecc:RoleType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Dieses Element dient zur Angabe der Marktrolle des Empfängers.</xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes:
+'A18' Grid operator
+'A39' Data provider </xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="CreationDateTime" type="ecc:DateTimeType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">
+Hier ist der Erzeugungszeitpunkt des Dokuments anzugeben. Die Zeitangabe erfolgt in UTC. 
+Der Zeitpunkt ist immer im Format yyyy-mm-ddThh:mm:ssZ anzugeben, mit:
+
+yyyy vier Ziffern für die Jahresangabe
+mm zwei Ziffern für die Monatsangabe
+dd zwei Ziffern für die Tagesangabe
+hh zwei Ziffern für die Stundenangabe
+mm zwei Ziffern für die Minutenangabe
+ss zwei Ziffern für die Sekundenangabe
+T, Z Zeichen, die an den entsprechenden Stellen zwingend anzugeben sind.
+            </xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="RedispatchDemandTimeInterval" type="ecc:TimeIntervalType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">
+Hier erfolgt die Angabe des Zeitintervalls für das Dokument (immer vollständige Tage). 
+Die Angabe erfolgt im UTC-Format yyyy-mm-ddThh:mmZ/yyyy-mm-ddThh:mmZ:
+
+yyyy vier Ziffern für die Jahresangabe
+mm zwei Ziffern für die Monatsangabe
+dd zwei Ziffern für die Tagesangabe
+hh zwei Ziffern für die Stundenangabe
+mm zwei Ziffern für die Minutenangabe
+T, Z, / Zeichen, die an den entsprechenden Stellen zwingend anzugeben sind.
+            </xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Erfüllungstag in UTC</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="OrderIdentification" type="ecc:IdentificationType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">In diesem Element wird die Identifikation des D96 -Dokuments (DocumentIdentification) angegeben, auf das sich das D41/D42 Dokument bezieht.</xsd:documentation>
+						<xsd:documentation source="Remark">Nur bei DocumentType D41/D42 anzuwenden</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="OrderIdentificationVersion" type="ecc:VersionType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">In diesem Element wird die DocumentVersion des D96-Dokuments angegeben, auf das sich das D41/D42 Dokument bezieht.</xsd:documentation>
+						<xsd:documentation source="Remark">Nur bei DocumentType D41/D42 anzuwenden</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="RedispatchDemandTimeSeries" type="RedispatchDemandTimeSeries_Type" maxOccurs="2">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">
+Enthält die Zeitreihen für das jeweilige ResourceObject (Netzbetriebsmittel), auf die sich ein RD-Bedarf bezieht.
+In dieser Datei können nur Zeitreihen die sich auf das gleiche ResourceObject (Netzbetriebsmittel) beziehen gemeldet werden. 
+Diese sind je Richtung getrennt anzulegen, dürfen sich aber je Zeitintervall nicht widersprechen.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="DtdBDEWNachrichtenVersion" type="xsd:string" fixed="1.0"/>
+			<xsd:attribute name="DareSchemaVersion" type="DareSchemaVersionType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="RedispatchDemandTimeSeries_Type">
+		<xsd:sequence>
+			<xsd:element name="RedispatchDemandIdentification" type="ecc:IdentificationType"/>
+			<xsd:element name="ResourceProvider" type="ecc:PartyType">
+								<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Dieses Element dient zur eindeutigen Identifikation des Resource Providers über seine Marktpartner-ID, die zu einer vordefinierten Codeliste einer - den jeweiligen Identifikator vergebenden -  Organisation gehören muss.</xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Anwendbare codingSchemes:
+'A10'
+'NDE'</xsd:documentation>
+					</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BusinessType" type="ecc:BusinessType">
+				<xsd:annotation>
+					<xsd:documentation source="Desc" xml:lang="DE"> Typ der Zeitreihe. A46 Redispatch-Bedarf</xsd:documentation>
+					<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes:
+'A46'</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+					<xsd:element name="ConnectingArea" type="ecc:AreaType">
+				<xsd:annotation>
+					<xsd:documentation>Es ist der EIC der Regelzone anzugeben, der die technische(n) Ressource(n) zugeordnet ist/sind, für die die Zeitreihen gemeldet werden.
+					</xsd:documentation>
+					<xsd:documentation source="Remark" xml:lang="DE">
+Anwendbare Codes:
+'10YDE-ENBW-----N'	TransnetBW
+'10YDE-EON------1'	TenneT
+'10YDE-RWENET---I'	Amprion
+'10YDE-VE-------2'	50Hertz
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="MeasureUnit" type="ecc:UnitOfMeasureType">
+				<xsd:annotation>
+					<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes:
+'MAW' (Megawatt)
+</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Direction" type="ecc:DirectionType">
+				<xsd:annotation>
+					<xsd:documentation source="Remark" xml:lang="DE">
+Anwendbare Codes:
+'A01'	(Up)
+'A02'	(Down)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Status" type="ecc:StatusType">
+				<xsd:annotation>
+					<xsd:documentation source="Remark" xml:lang="DE">
+Anwendbare Codes:
+'A10'	(nur D96) Ordered (Bedarf)
+'A06'	(nur D41/D42) Available (Verfügbar)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ResourceObject" type="DareResourceObjectType" minOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation source="Desc" xml:lang="DE">ID des Netzbetriebsmittels(NBM) welches auch im Netzmodell-light (EQ) hinterlegt ist. Präferiert wird hier die uuid (rdf:ID) verwendet, alternativ kann auch ein T-EIC-Code verwendet werden.</xsd:documentation>
+				<xsd:documentation source="Remark" xml:lang="DE">Anwendbare codingSchemes:
+'A01'
+'NDE'</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Period" type="Period_Type" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Reason" type="Reason_Type" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation source="Desc" xml:lang="DE">Nur Bei DocumentType D41 und D42</xsd:documentation>
+					<xsd:documentation source="Remark" xml:lang="DE">
+Anwendbare Codes:
+'A57'	Deadline limit exceeded/Gate not open
+'A95'	Complementary information
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Period_Type">
+		<xsd:sequence>
+						<xsd:element name="TimeInterval" type="ecc:TimeIntervalType">
+				<xsd:annotation>
+					<xsd:documentation source="Desc" xml:lang="DE">
+Hier erfolgt die Angabe des Zeitintervalls für die
+zugehörige Periode in der Zeitreihe. 
+Die Angabe erfolgt im UTC-Format yyyy-mmddThh:
+mmZ/yyyy-mm-ddThh:mmZ: 
+yyyy vier Ziffern für die Jahresangabe 
+mm zwei Ziffern für die Monatsangabe 
+dd zwei Ziffern für die Tagesangabe 
+hh zwei Ziffern für die Stundenangabe 
+mm zwei Ziffern für die Minutenangabe 
+T Trennzeichen zwischen Datum und Uhrzeit 
+Z Verweis auf UTC 
+/ Trennzeichen zwischen beiden Zeitangaben
+
+Das TimeInterval umfasst zwingend immer einen
+Kalendertag. Dabei sind die Vorgaben zur Zeitumstellung
+gemäß der EDI@Energy Allgemeinen Festlegungen zu
+berücksichtigen.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Resolution" type="ecc:ResolutionType">
+				<xsd:annotation>
+					<xsd:documentation source="Desc" xml:lang="DE">Viertelstundenauflösung.
+						</xsd:documentation>
+					<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes:	'PT15M' Viertelstundenauflösung </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>			
+			<xsd:element name="Interval" type="Interval_Type" maxOccurs="100"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Interval_Type">
+		<xsd:sequence>
+			<xsd:element name="Pos" type="ecc:PositionType"/>
+			<xsd:element name="Qty" type="ecc:QuantityType"/>
+			<xsd:element name="Reason" type="Reason_Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation source="Remark" xml:lang="DE">
+Anwendbare Codes:
+Bei DocumentType D96									
+'Z20'	Überlastung Zweig im n-Fall droht	
+'Z21'	Überlastung Zweig im (n-1)-Fall droht	
+
+Bei DocumentType D42
+'Z26'	RD-Potential zu gering
+'Z27'	Flexbeschränkung greift
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Reason_Type">
+		<xsd:sequence>
+			<xsd:element name="ReasonCode" type="DareReasonCodeType"/>
+			<xsd:element name="ReasonText" type="ecc:ReasonTextType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- DA/RE extensions -->
+	<xsd:simpleType name="DareSchemaVersionType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="1.0"/>
+			<!--	<xsd:enumeration value="1.1"/>-->
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="DareMessageType">
+		<xsd:attribute name="v" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="D96"/>
+					<xsd:enumeration value="D41"/>
+					<xsd:enumeration value="D42"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:simpleType name="DareExtensionReasonCodeType">
+		<xsd:restriction base="xsd:NMTOKEN">
+			<xsd:enumeration value="Z20"/>
+			<xsd:enumeration value="Z21"/>
+			<xsd:enumeration value="Z26"/>
+			<xsd:enumeration value="Z27"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DareReasonCodeTypeList">
+		<xsd:union memberTypes="ecl:StandardMessageTypeList DareExtensionReasonCodeType"/>
+	</xsd:simpleType>
+	<xsd:complexType name="DareReasonCodeType">
+		<xsd:attribute name="v" type="DareReasonCodeTypeList" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="DareResourceObjectType">
+		<xsd:attribute name="v" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="36"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="codingScheme" type="ecl:CodingSchemeType" use="required"/>
+	</xsd:complexType>
+</xsd:schema>

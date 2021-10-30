@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecc="urn:entsoe.eu:wgedi:components" xmlns:ecl="urn:entsoe.eu:wgedi:codelists" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="urn:entsoe.eu:wgedi:components" schemaLocation="urn-entsoe-eu-wgedi-components.xsd"/>
+	<!-- DA/RE extension -->
+	<xsd:import namespace="urn:entsoe.eu:wgedi:codelists" schemaLocation="urn-entsoe-eu-wgedi-codelists.xsd"/>
+	<xsd:element name="DarePlannedSensitivityScheduleDocument">
+		<xsd:annotation>
+			<xsd:documentation source="Desc">Planungsdaten Dokument zur Übermittlung bzw. Aktualisierung von Netztechnischen Wirksamkeiten die durch die NTW-Stammdaten (DareMasterDataSensitivityDocument) bereits übermittelt sind.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="DocumentIdentification" type="ecc:IdentificationType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Die Identifikation des Dokuments (DocumentIdentification) hat je Absender und je Dokumententyp eindeutig zu sein. Bei der Bildung der Identifikation ist auf Groß- und Kleinschreibung zu achten (case-sensitive).</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="DocumentVersion" type="ecc:VersionType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Die DocumentVersion (auch als Meldungsversion bezeichnet) gibt die Version eines Dokumentes an, welches über die DocumentIdentification identifiziert wird. Mit jeder Aktualisierung wird die Versionsangabe kontinuierlich, mit 1  beginnend, hochgezählt. Die jeweils höchste DocumentVersion kennzeichnet die aktuelle Version.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<!-- DA/RE extension -->
+				<xsd:element name="DocumentType" type="DareMessageType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Der DocumentType dient zur eindeutigen Kennzeichnung des Dokumenttyps. D17 NTW-Planungsdaten</xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes: 	'D17'</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ProcessType" type="ecc:ProcessType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Der ProcessType gibt an, in welchem Prozess dieses Dokument eingesetzt wird. A14 Forecast</xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes: 	'A14'</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="modelingAuthoritySet" type="DareModelingAuthoritySet">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Name des Netzmodells auf das sich bezogen wird. Format http://[UKZ_4-5Z]-[NB-Nr].cim /[spg-level]/[opt. Bereich] </xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="DependentOn" type="DareDependentOn">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">ID der NTW_Stammdatendatei.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="SenderIdentification" type="ecc:PartyType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Dieses Element dient zur eindeutigen Identifikation des Senders über seine Marktpartner-ID, die zu einer vordefinierten Codeliste einer vergebenden Organisation gehören muss.</xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Anwendbare codingSchemes:
+'A10'
+'NDE'</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="SenderRole" type="ecc:RoleType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Dieses Element dient zur Angabe der Marktrolle des Absenders.</xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes:
+'A18' Grid operator 
+</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ReceiverIdentification" type="ecc:PartyType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Dieses Element dient zur eindeutigen Identifikation des Empfängers über seine Marktpartner-ID, die zu einer vordefinierten Codeliste einer vergebenden Organisation gehören muss.</xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Anwendbare codingSchemes:
+'A10'
+'NDE'</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ReceiverRole" type="ecc:RoleType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">Dieses Element dient zur Angabe der Marktrolle des Empfängers.</xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes:
+'A39' Data provider </xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="DocumentDateTime" type="ecc:DocumentDateTimeType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">
+Hier ist der Erzeugungszeitpunkt des Dokuments (in der jeweiligen Version) anzugeben. Die Zeitangabe erfolgt in UTC. 
+
+Der Zeitpunkt ist immer im Format yyyy-mm-ddThh:mm:ssZ anzugeben mit:
+
+yyyy vier Ziffern für die Jahresangabe
+mm zwei Ziffern für die Monatsangabe
+dd zwei Ziffern für die Tagesangabe
+hh zwei Ziffern für die Stundenangabe
+mm zwei Ziffern für die Minutenangabe
+ss zwei Ziffern für die Sekundenangabe
+T Trennzeichen zwischen Datum und Uhrzeit
+Z Verweis auf UTC
+						</xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Zeitpunkt in UTC gemäß Pattern</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="TimePeriodCovered" type="ecc:TimeIntervalType">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">
+Der Zeitraum entspricht immer dem Erfüllungstag (ein Kalendertag von 0:00 Uhr lokaler deutscher Zeit des Erfüllungstages bis 0:00 Uhr lokaler deutscher Zeit des unmittelbar auf den Erfüllungstag folgenden Tages), für den die Daten gesendet werden. 
+
+Das Zeitintervall (von Beginn des Erfüllungstages bis Ende des Erfüllungstages) ist im UTC-Format yyyy-mm-ddThh:mmZ/yyyy-mmddThh:mmZ wie folgt anzugeben:
+
+yyyy vier Ziffern für die Jahresangabe
+mm zwei Ziffern für die Monatsangabe
+dd zwei Ziffern für die Tagesangabe
+hh zwei Ziffern für die Stundenangabe
+mm zwei Ziffern für die Minutenangabe
+T Trennzeichen zwischen Datum und Uhrzeit
+Z Verweis auf UTC
+/ Trennzeichen zwischen beiden Zeitangaben
+            </xsd:documentation>
+						<xsd:documentation source="Remark" xml:lang="DE">Tag in UTC gemäß Pattern</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="PlannedSensitivityTimeSeries" type="PlannedSensitivityTimeSeries_Type" minOccurs="1" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation source="Desc" xml:lang="DE">
+Ein Eintrag für eine NTW-Zeitreihe besteht immer aus der Kombination aus Netzknoten (ResourceObject) und Netzbetriebsmittel (GridElement)
+Diese Kombination muss in der referenzierten NTW-Stammdatendatei vorhanden sind. Der Absender kann so viele Zeitreihen wie nötig übertragen.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="DtdVersion" type="xsd:string" fixed="4"/>
+			<xsd:attribute name="DtdRelease" type="xsd:string" fixed="1"/>
+			<xsd:attribute name="DtdBDEWNachrichtenVersion" type="xsd:string" fixed="1.0"/>
+			<xsd:attribute name="DareSchemaVersion" type="DareSchemaVersionType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="PlannedSensitivityTimeSeries_Type">
+		<xsd:sequence>
+			<xsd:annotation>
+				<xsd:documentation source="Desc" xml:lang="DE">
+Eindeutige Identifikation der Zeitreihe. Kombination aus Netzknoten (c) und Netzbetriebsmittel (GridElement) und Zeitraum
+Denkbar: uuid aus ID ResourceObject und ID GridElement generiert oder nur zusammengesetzt (max. Länge beachten)
+					</xsd:documentation>
+				<xsd:documentation source="Remark" xml:lang="DE">
+Pattern [Konvention noch ausstehend]
+					</xsd:documentation>
+			</xsd:annotation>
+			<xsd:element name="TimeSeriesIdentification" type="ecc:IdentificationType"/>
+			<xsd:element name="BusinessType" type="ecc:BusinessType">
+				<xsd:annotation>
+					<xsd:documentation source="Desc" xml:lang="DE">Typ der Zeitreihe.</xsd:documentation>
+					<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes: 	
+'B59'	Sensitivitäten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Direction" type="ecc:DirectionType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation source="Desc" xml:lang="DE">A01 Wert der Sensitivität in StandardRichtung 1->2. 
+A02 Wert gegen die StandardRichtung 2->1
+					</xsd:documentation>
+					<xsd:documentation source="Example" xml:lang="DE">
+Beispiel für A02: Leistungserhöhung am Knoten (ResourceObject) bewirkte eine Leistungserhöhung gegen die Standardrichtung des NBM (GridElement), ist gleichbedeutend mit einer Leistungsreduktion in die StandardRichtung
+Die Direction beschreibt das Vorzeichen der Sensitivitäten.
+					</xsd:documentation>
+					<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes: 	
+'A01'
+'A02'</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ConnectingArea" type="ecc:AreaType">
+				<xsd:annotation>
+					<xsd:documentation source="Desc" xml:lang="DE">Es ist der EIC der Regelzone anzugeben, der die technische(n) Ressource(n) zugeordnet ist/sind, für die die Zeitreihen gemeldet werden.
+					</xsd:documentation>
+					<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes:
+'10YDE-ENBW-----N'	TransnetBW
+'10YDE-EON------1'	TenneT
+'10YDE-RWENET---I'	Amprion
+'10YDE-VE-------2'	50Hertz
+
+Anwendbare codingSchemes:
+'A01'	</xsd:documentation>
+				</xsd:annotation>			
+			</xsd:element>			
+			<xsd:element name="ResourceObject" type="DareResourceObjectType">
+				<xsd:annotation>
+					<xsd:documentation source="Desc" xml:lang="DE">ID des Netzknoten welcher auch im Netzmodell-light (TP) hinterlegt ist, präferiert wird hier die uuid (rdf:ID) alternativ kann auch ein T-EIC-Code verwendet werden.</xsd:documentation>
+					<xsd:documentation source="Remark" xml:lang="DE">Anwendbare codingSchemes:
+'A01'
+'NDE'</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ResourceObjectDisplay" type="DareResourceObjectDisplay" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation source="Desc" xml:lang="DE">Optional Name des Topologischen Netzknotens</xsd:documentation>
+					<xsd:documentation source="Remark" xml:lang="DE">Anwendbare codingSchemes:
+'A01'
+'NDE'</xsd:documentation>
+			</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GridElement" type="DareResourceObjectType">
+				<xsd:annotation>
+					<xsd:documentation source="Desc" xml:lang="DE">ID des Netzbetriebsmittels(NBM) welches auch im Netzmodell-light (EQ) hinterlegt ist. Präferiert wird hier die uuid (rdf:ID) verwendet, alternativ kann auch ein T-EIC-Code verwendet werden.</xsd:documentation>
+					<xsd:documentation source="Remark" xml:lang="DE">Anwendbare codingSchemes:
+'A01'
+'NDE'</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GridElementDisplay" type="DareGridElementDisplay" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation source="Desc" xml:lang="DE">Optional Name des Netzbetriebsmittels</xsd:documentation>
+					<xsd:documentation source="Remark" xml:lang="DE">Anwendbare codingSchemes:
+'A01'
+'NDE'</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="MeasurementUnit" type="ecc:UnitOfMeasureType">
+				<xsd:annotation>
+					<xsd:documentation source="Remark">C62 erlaubt Werte zwischen 0 und 1</xsd:documentation>
+					<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes:
+'C62'	One </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Period" type="Period_Type"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Period_Type">
+		<xsd:sequence>
+			<xsd:element name="TimeInterval" type="ecc:TimeIntervalType"/>
+			<xsd:element name="Resolution" type="ecc:ResolutionType">
+				<xsd:annotation>
+					<xsd:documentation source="Desc" xml:lang="DE">Viertelstundenauflösung.</xsd:documentation>
+					<xsd:documentation source="Remark" xml:lang="DE">Anwendbare Codes:	
+'PT15M' Viertelstundenauflösung </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Interval" type="Interval_Type" minOccurs="1" maxOccurs="100"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Interval_Type">
+		<xsd:sequence>
+			<xsd:element name="Pos" type="ecc:PositionType"/>
+			<xsd:element name="Qty" type="ecc:QuantityType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- DA/RE extensions -->
+	<xsd:simpleType name="DareSchemaVersionType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="1.0"/>
+			<!--	<xsd:enumeration value="1.1"/>-->
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DareExtensionMessageType">
+		<xsd:restriction base="xsd:NMTOKEN">
+			<xsd:enumeration value="D17"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DareMessageTypeList">
+		<xsd:union memberTypes="ecl:StandardMessageTypeList DareExtensionMessageType"/>
+	</xsd:simpleType>
+	<xsd:complexType name="DareMessageType">
+		<xsd:attribute name="v" type="DareMessageTypeList" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="DareModelingAuthoritySet">
+		<xsd:attribute name="v" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="32"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="DareDependentOn">
+		<xsd:attribute name="v" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="36"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="DareResourceObjectDisplay">
+		<xsd:attribute name="v" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string"/>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="codingScheme" type="ecl:CodingSchemeType" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="DareGridElementDisplay">
+		<xsd:attribute name="v" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string"/>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="codingScheme" type="ecl:CodingSchemeType" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="DareResourceObjectType">
+		<xsd:attribute name="v" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="36"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="codingScheme" type="ecl:CodingSchemeType" use="required"/>
+	</xsd:complexType>
+</xsd:schema>
