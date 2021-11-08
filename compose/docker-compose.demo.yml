@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  elastic-node01:
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - elastic-data01:/usr/share/elasticsearch/data
+
+  kibana:
+    restart: unless-stopped
+    environment:
+      - ELASTICSEARCH_URL=http://elastic-node01:9200
+      - ELASTICSEARCH_HOSTS=["http://elastic-node01:9200"]
+      - VIRTUAL_PORT=5601
+      - VIRTUAL_HOST=kibana-enerthon2021.coverified.info
+    depends_on:
+      - elastic-node01
+
+volumes:
+  elastic-data01:
